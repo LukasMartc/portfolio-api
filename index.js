@@ -1,7 +1,9 @@
 import express from 'express';
 import dotenv from 'dotenv';
-import connectDB from './config/db.js'
-import userRoutes from './routes/userRoutes.js'
+import connectDB from './config/db.js';
+import userRoutes from './routes/userRoutes.js';
+import projectRoutes from './routes/projectRoutes.js';
+import technologyRoutes from './routes/technologyRoutes.js'
 
 const app = express();
 
@@ -12,9 +14,11 @@ dotenv.config();
 connectDB();
 
 //Routing
-app.use('/api', userRoutes);
+app.use('/api/user', userRoutes);
+app.use('/api/projects', projectRoutes);
+app.use('/api/technology', technologyRoutes);
 
-const PORT = process.env.PORT || 4000
+const PORT = process.env.PORT || 4000;
 
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
