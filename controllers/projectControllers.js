@@ -61,7 +61,7 @@ const deleteProject = async (req, res) => {
 
     try {
         await Project.findByIdAndDelete(id);
-        res.json({ success: true, msg: 'Proyecto eliminado con éxito'})
+        res.json({ msg: 'Proyecto eliminado con éxito'})
     } catch (error) {
         console.log(error);
     }

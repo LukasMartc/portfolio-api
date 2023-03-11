@@ -61,7 +61,7 @@ const deleteTechnology = async (req, res) => {
 
     try {
         await Technology.findByIdAndDelete(id);
-        res.json({ success: true, msg: 'Tecnología eliminada con éxito'})
+        res.json({ msg: 'Habilidad eliminada correctamente'})
     } catch (error) {
         console.log(error);
     }
