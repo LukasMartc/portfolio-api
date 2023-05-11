@@ -15,11 +15,11 @@ dotenv.config();
 
 connectDB();
 
-const whitelist = [process.env.FRONTEND_URL]
+const whitelist = process.env.NODE_ENV === 'production' ? [process.env.FRONTEND_URL] : ['*'];
 
 const corsOptions = {
     origin: function(origin, callback) {
-        if(whitelist.includes(origin)) {
+        if(whitelist.includes(origin) || whitelist.includes('*')) {
             callback(null, true)
         }   else {
             callback(new Error('Error de Cors'))
