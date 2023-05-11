@@ -6,6 +6,7 @@ import userRoutes from './routes/userRoutes.js';
 import projectRoutes from './routes/projectRoutes.js';
 import technologyRoutes from './routes/technologyRoutes.js'
 import mailRoutes from './routes/mailRoutes.js';
+import { allowCors, handler } from './config/vercel.js';
 
 const app = express();
 
@@ -27,6 +28,7 @@ const corsOptions = {
     }
 }
 
+allowCors(handler);
 app.use(cors(corsOptions));
 
 //Routing
