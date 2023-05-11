@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Api Portfolio",
   "main": "index.js",
+  "engines": {
+    "node": "18x"
+  },
   "type": "module",
   "scripts": {
     "dev": "nodemon index.js",
