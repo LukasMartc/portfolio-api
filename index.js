@@ -16,9 +16,9 @@ dotenv.config();
 
 connectDB();
 
-const whitelist = process.env.NODE_ENV === 'production' ? [process.env.FRONTEND_URL] : ['*'];
+/* const whitelist = process.env.NODE_ENV === 'production' ? [process.env.FRONTEND_URL] : ['*']; */
 
-const corsOptions = {
+/* const corsOptions = {
     origin: function(origin, callback) {
         if(whitelist.includes(origin) || whitelist.includes('*')) {
             callback(null, true)
@@ -26,10 +26,12 @@ const corsOptions = {
             callback(new Error('Error de Cors'))
         }
     }
-}
+} */
 
 allowCors(handler);
-app.use(cors(corsOptions));
+app.use(cors({
+    origin: 'https://lukasmartinezc.netlify.app/'
+}));
 
 //Routing
 app.use('/api/user', userRoutes);
