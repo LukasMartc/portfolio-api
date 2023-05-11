@@ -16,20 +16,10 @@ dotenv.config();
 
 connectDB();
 
-const whitelist = [process.env.FRONTEND_URL]
-
-const corsOptions = {
-    origin: function(origin, callback) {
-        if(whitelist.includes(origin)) {
-            callback(null, true)
-        }   else {
-            callback(new Error('Error de Cors'))
-        }
-    }
-}
-
 allowCors(handler);
-app.use(cors(corsOptions));
+app.use(cors({
+    origin: process.env.FRONTEND_URL
+}));
 
 //Routing
 app.use('/api/user', userRoutes);
