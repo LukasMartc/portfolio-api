@@ -6,7 +6,6 @@ import userRoutes from './routes/userRoutes.js';
 import projectRoutes from './routes/projectRoutes.js';
 import technologyRoutes from './routes/technologyRoutes.js'
 import mailRoutes from './routes/mailRoutes.js';
-import { allowCors, handler } from './config/vercel.js';
 
 const app = express();
 
@@ -16,10 +15,19 @@ dotenv.config();
 
 connectDB();
 
-allowCors(handler);
-app.use(cors({
-    origin: process.env.FRONTEND_URL
-}));
+const whitelist = [process.env.FRONTEND_URL]
+
+const corsOptions = {
+    origin: function(origin, callback) {
+        if(whitelist.includes(origin)) {
+            callback(null, true)
+        }   else {
+            callback(new Error('Error de Cors'))
+        }
+    }
+}
+
+app.use(cors(corsOptions));
 
 //Routing
 app.use('/api/user', userRoutes);
@@ -32,4 +40,3 @@ const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
-
