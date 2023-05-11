@@ -16,22 +16,20 @@ dotenv.config();
 
 connectDB();
 
-/* const whitelist = process.env.NODE_ENV === 'production' ? [process.env.FRONTEND_URL] : ['*']; */
+const whitelist = [process.env.FRONTEND_URL]
 
-/* const corsOptions = {
+const corsOptions = {
     origin: function(origin, callback) {
-        if(whitelist.includes(origin) || whitelist.includes('*')) {
+        if(whitelist.includes(origin)) {
             callback(null, true)
         }   else {
             callback(new Error('Error de Cors'))
         }
     }
-} */
+}
 
 allowCors(handler);
-app.use(cors({
-    origin: 'https://lukasmartinezc.netlify.app/'
-}));
+app.use(cors(corsOptions));
 
 //Routing
 app.use('/api/user', userRoutes);
